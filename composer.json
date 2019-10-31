@@ -1,0 +1,30 @@
+{
+    "name": "skydiver/nova-cached-images",
+    "description": "Laravel Nova field to display and cache remote images.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "biigle/laravel-file-cache": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Skydiver\\NovaCachedImages\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skydiver\\NovaCachedImages\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
