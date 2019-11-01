@@ -21,3 +21,11 @@ NovaCachedImages::make("Avatar")
   ->height('50px')                            // image height
   ->radius('5px')                             // image border radius
 ```
+
+## Credits
+* [biigle/laravel-file-cache](https://github.com/biigle/laravel-file-cache): Fetch and cache files from local filesystem, cloud storage or public webservers in Laravel or Lumen.
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
