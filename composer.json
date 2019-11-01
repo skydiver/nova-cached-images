@@ -3,7 +3,10 @@
     "description": "Laravel Nova field to display and cache remote images.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "images",
+        "remote-images",
+        "cache"
     ],
     "license": "MIT",
     "require": {
