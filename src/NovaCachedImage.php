@@ -3,7 +3,6 @@
 namespace Skydiver\NovaCachedImages;
 
 use Laravel\Nova\Fields\Field;
-
 use FileCache;
 use Biigle\FileCache\GenericFile;
 
@@ -16,19 +15,31 @@ class NovaCachedImages extends Field
      */
     public $component = 'nova-cached-images';
 
-    public function __construct($name, $attribute = null, callable $resolveCallback = null) {
-        parent::__construct($name, $attribute, $resolveCallback);
-        $this->resolveUsing(function ($value) {
-            $file = new GenericFile($value);
+    /**
+     * Resolve the field's value for display.
+     *
+     * @param  mixed  $resource
+     * @param  string|null  $attribute
+     *
+     * @return void
+     */
+    public function resolveForDisplay($resource, $attribute = null)
+    {
+        if (empty($this->value)) {
+            $this->value = null;
+        }
 
-            $path = FileCache::get($file, function ($file, $path) {
-                return basename($path);
-            });
+        $file = new GenericFile($this->value);
 
-            $url = vsprintf('%s/%s', ['nova-vendor/skydiver/nova-cached-images', $path]);
-            return url($url);
+        $path = FileCache::get($file, function ($file, $path) {
+            return basename($path);
         });
+
+        $url = vsprintf('%s/%s', ['nova-vendor/skydiver/nova-cached-images', $path]);
+
+        $this->value = url($url);
     }
+
 
     public function class(string $class)
     {
@@ -54,5 +65,4 @@ class NovaCachedImages extends Field
     {
         return $this->withMeta(['radius' => $radius]);
     }
-
 }
