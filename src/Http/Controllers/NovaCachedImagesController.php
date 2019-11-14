@@ -20,7 +20,7 @@ class NovaCachedImagesController extends Controller
             config('file-cache.path'), $image
         ]);
 
-        if(!File::exists($path)) {
+        if (!File::exists($path)) {
             abort(404);
         }
 
