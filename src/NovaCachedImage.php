@@ -29,15 +29,24 @@ class NovaCachedImages extends Field
             $this->value = null;
         }
 
-        $file = new GenericFile($this->value);
+        try {
+            $file = new GenericFile($this->value);
 
-        $path = FileCache::get($file, function ($file, $path) {
-            return basename($path);
-        });
+            $path = FileCache::get($file, function ($file, $path) {
+                return basename($path);
+            });
 
-        $url = vsprintf('%s/%s', ['nova-vendor/skydiver/nova-cached-images', $path]);
+            $url = vsprintf('%s/%s', [
+                'nova-vendor/skydiver/nova-cached-images',
+                $path
+            ]);
 
-        $this->value = url($url);
+            $value = url($url);
+        } catch (\Throwable $th) {
+            $value = 'remote image not found';
+        }
+
+        $this->value = $value;
     }
 
 
